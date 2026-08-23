@@ -6,7 +6,7 @@ import asyncio
 @anvil.server.callable
 def test_grpc_import():
   return {"grpc_version": grpc.__version__}
-  async def _grpc_channel_test():
+async def _grpc_channel_test():
     channel = grpc.aio.secure_channel("mobile.deneb.prod.infotainment.pdx.atieva.com:443", grpc.ssl_channel_credentials())
     try:
       await asyncio.wait_for(channel.channel_ready(), timeout=10)
@@ -16,7 +16,7 @@ def test_grpc_import():
     await channel.close()
     return result
 
-    @anvil.server.callable
-    def test_grpc_connection():
-      return asyncio.run(_grpc_channel_test())
+@anvil.server.callable
+def test_grpc_connection():
+  return asyncio.run(_grpc_channel_test())
       
