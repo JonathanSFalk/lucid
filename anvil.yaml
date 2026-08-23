@@ -1,11 +1,6 @@
 allow_embedding: false
 name: Lucid
-native_deps:
-  head_html: |-
-    grpcio
-    protobuf
-    tenacity
-    async-lru
+native_deps: {head_html: ''}
 package_name: Lucid
 runtime_options:
   client_version: '3'
