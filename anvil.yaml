@@ -1,18 +1,28 @@
 allow_embedding: false
-name: Minimal Theme 1
+name: Lucid
 native_deps:
   head_html: |-
     grpcio
     protobuf
     tenacity
     async-lru
-package_name: Minimal_Theme_1
+package_name: Lucid
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
   version: 3
+secrets:
+  Password:
+    type: secret
+    value: {FESDM7OUJ2JSZ2JD: XKwytVF25GsZo24UGE+iq1KRU/jd6Cp/UR6vYnYQFUShH/vE5Oe8m9Bz4nUtFPmFRsN1kUcWNZ+gQKuZO705/QShGy+pwv5P5yyiC2o3VPbTKVuJSQRrmGJ5s0pipOyT3PpvtDbrSZWHJw==}
+  User:
+    type: secret
+    value: {FESDM7OUJ2JSZ2JD: uSkJf0fG3mUTcSzdJb5loAwDAN0UaHruWLJg/ouE7xG2twYuSDKeA6Jq90S/xPDWVRU5Obv4feIPnSi1DC69RG07gPRQbtQpxUmstN88s1+QFEvJkfCKWicR/xJkiK7SXOfJm6ZfZXONVlEJzA1IN6ukAz/R8A==}
 services:
 - client_config: {enable_v2: true}
   server_config: {}
   source: /runtime/services/tables.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/anvil/secrets.yml
 startup: {module: Form1, type: form}

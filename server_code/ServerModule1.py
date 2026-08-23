@@ -1,3 +1,4 @@
+import anvil.secrets
 import anvil.server
 import grpc
 import grpc.aio
