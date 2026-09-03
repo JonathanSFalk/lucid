@@ -49,6 +49,13 @@ runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
   version: 3
+scheduled_tasks:
+- job_id: AFIQOXRY
+  task_name: poll_vehicle
+  time_spec:
+    at: {minute: 0}
+    every: hour
+    n: 1
 secrets:
   AdminKey:
     type: secret
