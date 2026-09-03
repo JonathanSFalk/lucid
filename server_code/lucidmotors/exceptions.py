@@ -1,3 +1,6 @@
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 """Exception types for the Lucid Motors API."""
 
 from dataclasses import dataclass

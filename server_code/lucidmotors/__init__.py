@@ -1,3 +1,6 @@
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 """The Lucid Motors mobile app API"""
 
 from __future__ import annotations

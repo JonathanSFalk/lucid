@@ -1,4 +1,47 @@
 allow_embedding: false
+db_schema:
+  readings:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      client_hidden: false
+      name: timestamp
+      type: datetime
+    - admin_ui: {order: 1, width: 200}
+      client_hidden: false
+      name: last_updated_ms
+      type: number
+    - admin_ui: {order: 2, width: 200}
+      client_hidden: false
+      name: odometer_km
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      client_hidden: false
+      name: kwhr
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      client_hidden: false
+      name: capacity_kwhr
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      client_hidden: false
+      name: charge_percent
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      client_hidden: false
+      name: remaining_range
+      type: number
+    - admin_ui: {order: 7, width: 200}
+      client_hidden: false
+      name: charge_state
+      type: string
+    - admin_ui: {order: 8, width: 200}
+      client_hidden: false
+      name: vehicle_id
+      type: string
+    indexes: []
+    server: full
+    title: readings
 name: Lucid
 native_deps: {head_html: ''}
 package_name: Lucid
@@ -14,7 +57,7 @@ secrets:
     type: secret
     value: {FESDM7OUJ2JSZ2JD: uSkJf0fG3mUTcSzdJb5loAwDAN0UaHruWLJg/ouE7xG2twYuSDKeA6Jq90S/xPDWVRU5Obv4feIPnSi1DC69RG07gPRQbtQpxUmstN88s1+QFEvJkfCKWicR/xJkiK7SXOfJm6ZfZXONVlEJzA1IN6ukAz/R8A==}
 services:
-- client_config: {enable_v2: true}
+- client_config: {enable_split: true, enable_v2: true}
   server_config: {}
   source: /runtime/services/tables.yml
 - client_config: {}

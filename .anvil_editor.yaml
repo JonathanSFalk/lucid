@@ -9,3 +9,21 @@ unique_ids:
   scripts: {}
   server_modules:
     ServerModule1: '1787516958729204026002181.2348'
+    lucidmotors: OUZPSMXZA3CRIYQ5NMNYKRQOG4SIDKPB
+    lucidmotors.const: 5SSQBR5CJMYPGE4X4UTV2B5N7JYYROOD
+    lucidmotors.exceptions: FFEDVIUY46BSWZ2AZ7R4LSCSHOPK5F35
+    lucidmotors.gen: TUEIRX3UC3SCG2KCD5F4YEXA5HZSDEFI
+    lucidmotors.gen.charging_service_pb2: KCYWQZQ4VLYVNNKXBFCLNRTOOBZJZ7J2
+    lucidmotors.gen.charging_service_pb2_grpc: 7KYIIINI3NUFSVQKTTJ7ZCIYC3ILHQQW
+    lucidmotors.gen.login_session_pb2: 4XSCQKJCCM3LWAETL5HKNY6PSWLMRA62
+    lucidmotors.gen.login_session_pb2_grpc: UABLROFBFEIPX6EATSF2F3O53LMRL46K
+    lucidmotors.gen.salesforce_service_pb2: AO7VUQZM3DPYMK6VOD3C2RZHAMOJKXIR
+    lucidmotors.gen.salesforce_service_pb2_grpc: BGXIFLJMBB4ZKSNLQIKPUAKC4ZBOQBUY
+    lucidmotors.gen.sentry_service_pb2: 6H4KZC7CSWVR2PJIJ4ST6OZ2FAVOOBNH
+    lucidmotors.gen.sentry_service_pb2_grpc: X7AQWA743ZZG57MXIZHFROXOCSHDLIF2
+    lucidmotors.gen.trip_service_pb2: NR53O2FQLSRTFLA6TFV4KVIVADMC5TXY
+    lucidmotors.gen.trip_service_pb2_grpc: 2X3DAZLSEO7IBNUFCQLPCX646QWNKRZ2
+    lucidmotors.gen.user_profile_service_pb2: Y4BUBE6TIWLHPTP42D4SNU44CMWPP6FR
+    lucidmotors.gen.user_profile_service_pb2_grpc: VBFUE2JOIMPPO6HVSQFPDCLUHA7YTUMX
+    lucidmotors.gen.vehicle_state_service_pb2: K7PPQI6VSS6UEXH5WGZQEYIXQVMLYQAK
+    lucidmotors.gen.vehicle_state_service_pb2_grpc: 3LPZ76IEN4LO5UEIT7YUALV7E2L7WVKE
