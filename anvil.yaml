@@ -50,6 +50,9 @@ runtime_options:
   server_spec: {base: python310-minimal}
   version: 3
 secrets:
+  AdminKey:
+    type: secret
+    value: {FESDM7OUJ2JSZ2JD: qRneBB3eRTgPUonVSefaSSIoR0q8Yx91qgmbFgDJEYUaB/09ftAfL7cWEf+qoSj5QfLGRfW4ZMSN6GtspJj4wI4wu5BMrMUDAl+gm4hosWj8MuRKPUS68CHGr+JvdM47TY5/PRlia2Qpz3EvrSj/CV5gq1730E3/SwU4vrXcvw==}
   Password:
     type: secret
     value: {FESDM7OUJ2JSZ2JD: XKwytVF25GsZo24UGE+iq1KRU/jd6Cp/UR6vYnYQFUShH/vE5Oe8m9Bz4nUtFPmFRsN1kUcWNZ+gQKuZO705/QShGy+pwv5P5yyiC2o3VPbTKVuJSQRrmGJ5s0pipOyT3PpvtDbrSZWHJw==}
