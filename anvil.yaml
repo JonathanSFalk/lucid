@@ -39,6 +39,10 @@ db_schema:
       client_hidden: false
       name: vehicle_id
       type: string
+    - admin_ui: {order: 9, width: 200}
+      client_hidden: false
+      name: poll_count
+      type: number
     indexes: []
     server: full
     title: readings
