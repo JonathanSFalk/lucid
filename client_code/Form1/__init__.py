@@ -13,33 +13,49 @@ class Form1(Form1Template):
     self._populate_timeline_plot()
 
   def _populate_efficiency_plot(self):
-    """plot_1: actual vs. dash-predicted Wh/km, one bar pair per hourly
+    """plot_1: actual vs. dash-predicted Wh/km, one point per hourly
     driving leg (see Dashboard.get_driving_legs - no trip-level grouping,
-    so the real efficiency swings within a drive stay visible)."""
+    so the real efficiency swings within a drive stay visible).
+
+    x is a *category* axis of formatted leg-start labels, not a real
+    time axis - legs are often hours or days apart (charging/parked time
+    in between), and a linear/date x-axis would stretch the plot out
+    with a long flat gap for every such interval. Category spacing keeps
+    every leg evenly spaced regardless of the real-world gap before it."""
     legs = anvil.server.call('get_driving_legs')
-    x = [leg['start'] for leg in legs]
+    # Drop legs where the dash gave no prediction (remaining_range was
+    # 0/missing at the leg's start) - otherwise a lone "Actual" point
+    # shows up with no "Dash's predicted" counterpart to compare it to.
+    legs = [leg for leg in legs if leg['predicted_wh_per_km'] is not None]
+    x = [self._format_leg_label(leg['start']) for leg in legs]
 
     self.plot_1.data = [
       {
-        'type': 'bar',
+        'type': 'scatter',
+        'mode': 'lines+markers',
         'name': 'Actual (Wh/km)',
         'x': x,
         'y': [leg['actual_wh_per_km'] for leg in legs],
       },
       {
-        'type': 'bar',
+        'type': 'scatter',
+        'mode': 'lines+markers',
         'name': "Dash's predicted (Wh/km)",
         'x': x,
         'y': [leg['predicted_wh_per_km'] for leg in legs],
       },
     ]
     self.plot_1.layout = {
-      'barmode': 'group',
-      'xaxis': {'title': 'Leg start (local time)'},
+      'xaxis': {'title': 'Leg start (local time)', 'type': 'category'},
       'yaxis': {'title': 'Wh/km'},
       'legend': {'orientation': 'h', 'y': -0.2},
       'margin': {'t': 20},
     }
+
+  @staticmethod
+  def _format_leg_label(dt):
+    """Succinct fixed-width label for a category-axis tick, e.g. '9/3 18:00'."""
+    return '%d/%d %02d:%02d' % (dt.month, dt.day, dt.hour, dt.minute)
 
   def _populate_timeline_plot(self):
     """plot_2: every stored reading, unfiltered - raw battery/range/charge
