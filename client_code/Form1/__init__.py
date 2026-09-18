@@ -1,5 +1,6 @@
 from ._anvil_designer import Form1Template
 from anvil import *
+import plotly.graph_objects as go
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -11,6 +12,7 @@ class Form1(Form1Template):
     super().__init__(**properties)
     self._populate_efficiency_plot()
     self._populate_timeline_plot()
+    self._populate_overhead_plot()
 
   def _populate_efficiency_plot(self):
     """plot_1: actual vs. dash-predicted Wh/km, one point per hourly
@@ -105,3 +107,18 @@ class Form1(Form1Template):
       'legend': {'orientation': 'h', 'y': -0.2},
       'margin': {'t': 20},
     }
+  def _populate_overhead_plot(self):
+    ivs = anvil.server.call('get_overhead_intervals')
+    self.plot_3.data = [{
+      'type': 'bar',
+      'name': 'Awake, not driving (kWh)',
+      'x': [self._format_leg_label(i['start']) for i in ivs],
+      'y': [i['energy_kwh'] for i in ivs],
+      'hovertext': ["%.1f km moved" % i['distance_km'] for i in ivs],
+    }]
+    self.plot_3.layout = {
+      'title': 'Non-driving energy per interval',
+      'yaxis': {'title': 'kWh'},
+      'xaxis': {'type': 'category'},
+    } 
+    

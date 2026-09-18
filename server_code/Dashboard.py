@@ -80,3 +80,28 @@ def get_timeline():
         'charge_state': r['charge_state'],
         'odometer_km': r['odometer_km'],
     } for r in rows]
+OVERHEAD_MAX_KM = 0.5    # odometer barely moved
+OVERHEAD_MIN_KWH = 0.05  # ignore near-noise drain
+
+@anvil.server.callable
+def get_overhead_intervals():
+  """Awake-but-not-driving energy: consecutive-row pairs, never charging,
+    odometer moved < OVERHEAD_MAX_KM, kwhr fell by >= OVERHEAD_MIN_KWH.
+    One entry per pair, i.e. one poll gap (~1 h). Only prev's timestamp is
+    a reliable anchor: curr's timestamp and last_updated_ms are refreshed
+    on every collapsed poll, so don't derive a duration from them."""
+  rows = list(app_tables.readings.search(tables.order_by("timestamp")))
+  out = []
+  for prev, curr in zip(rows, rows[1:]):
+    if prev['charge_state'] != NOT_CONNECTED or curr['charge_state'] != NOT_CONNECTED:
+      continue
+    distance_km = curr['odometer_km'] - prev['odometer_km']
+    energy_kwh = prev['kwhr'] - curr['kwhr']
+    if distance_km >= OVERHEAD_MAX_KM or energy_kwh < OVERHEAD_MIN_KWH:
+      continue
+    out.append({
+      'start': _to_local(prev['timestamp']),
+      'distance_km': distance_km,
+      'energy_kwh': energy_kwh,
+    })
+  return out
